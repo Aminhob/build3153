@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "615814131455",
+    "project_id": "appdata-3966a",
+    "storage_bucket": "appdata-3966a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615814131455:android:2f9a652f8eec7a8883e6ca",
+        "android_client_info": {
+          "package_name": "com.emaamul.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW3Y2QvFyI7WSvonJT5KC82v0jczFmXyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615814131455:android:a8bab322d3263bcd83e6ca",
+        "android_client_info": {
+          "package_name": "com.example.emaamulapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW3Y2QvFyI7WSvonJT5KC82v0jczFmXyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
