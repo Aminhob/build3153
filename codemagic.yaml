@@ -1,40 +1,32 @@
 workflows:
-  default-workflow:
-    name: Build eMaamul App
-    max_build_duration: 60
+  android-release:
+    name: Android Release Workflow
     environment:
+      vars:
+        # Add any secrets here if needed (API keys, keystore password)
       flutter: stable
       xcode: latest
-      vars:
-        PACKAGE_NAME: "com.emaamul.app"
+      cocoapods: default
+      android:
+        gradle-args: "--no-daemon"
     scripts:
-      # --- Fix namespace issue for flutter_barcode_scanner ---
-      - name: Fix flutter_barcode_scanner namespace issue
+      - name: Install Flutter dependencies
         script: |
-          PLUGIN_DIR="$FLUTTER_ROOT/.pub-cache/hosted/pub.dev/flutter_barcode_scanner-2.0.0/android"
-          if [ -f "$PLUGIN_DIR/build.gradle" ]; then
-            echo "⚙️ Adding namespace to flutter_barcode_scanner..."
-            echo "namespace 'com.amindev.flutter_barcode_scanner'" >> "$PLUGIN_DIR/build.gradle"
-            echo "✅ Namespace fix applied."
-          else
-            echo "⚠️ flutter_barcode_scanner plugin not found, skipping."
-          fi
-
-      # --- Clean and fetch dependencies ---
-      - name: Flutter clean and pub get
-        script: |
-          flutter clean
           flutter pub get
-
-      # --- Build release APK ---
-      - name: Build Android Release
+      - name: Run Flutter analyze
         script: |
-          flutter build apk --release --no-tree-shake-icons
-
+          flutter analyze
+      - name: Run Flutter tests
+        script: |
+          flutter test
+      - name: Build Android Release APK
+        script: |
+          flutter build apk --release
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
-
     publishing:
       email:
         recipients:
-          - amiin4dm@gmail.com
+          - your-email@example.com
+        on_success: always
+        on_failure: always
