@@ -1,32 +1,48 @@
-workflows:
-  android-release:
-    name: Android Release Workflow
-    environment:
-      vars:
-        # Add any secrets here if needed (API keys, keystore password)
-      flutter: stable
-      xcode: latest
-      cocoapods: default
-      android:
-        gradle-args: "--no-daemon"
-    scripts:
-      - name: Install Flutter dependencies
-        script: |
-          flutter pub get
-      - name: Run Flutter analyze
-        script: |
-          flutter analyze
-      - name: Run Flutter tests
-        script: |
-          flutter test
-      - name: Build Android Release APK
-        script: |
-          flutter build apk --release
-    artifacts:
-      - build/app/outputs/flutter-apk/app-release.apk
-    publishing:
-      email:
-        recipients:
-          - your-email@example.com
-        on_success: always
-        on_failure: always
+plugins {
+    id("com.android.application")
+    id("kotlin-android")
+    id("dev.flutter.flutter-gradle-plugin")
+    id("com.google.gms.google-services")
+}
+
+android {
+    namespace = "com.emaamul.app"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "com.emaamul.app"
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false     // Disable code shrinking
+            isShrinkResources = false   // Disable resource shrinking
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
+}
