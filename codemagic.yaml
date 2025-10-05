@@ -21,10 +21,6 @@ android {
         getByName("release") {
             isMinifyEnabled = false       // Disable code shrinking
             isShrinkResources = false     // Disable resource shrinking
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -41,8 +37,4 @@ android {
 
 flutter {
     source = "../.."
-}
-
-dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
 }
