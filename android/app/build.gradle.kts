@@ -9,14 +9,17 @@ plugins {
 }
 
 android {
-    namespace "com.emaamul.app"  // ← ku dar namespace-ka app-kaaga
-    compileSdkVersion 34
-    ndkVersion = "25.2.9519653"
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    namespace = "com.emaamul.app"
+    compileSdk = 34
+    defaultConfig {
+        applicationId = "com.emaamul.app"
+        minSdk = 21
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
     }
+}
+
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
