@@ -19,8 +19,8 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false     // Disable code shrinking
-            isShrinkResources = false   // Disable resource shrinking
+            isMinifyEnabled = false       // Disable code shrinking
+            isShrinkResources = false     // Disable resource shrinking
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
