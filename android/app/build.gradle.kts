@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("dev.flutter.flutter-gradle-plugin")
-    id("com.google.gms.google-services") // FlutterFire
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -19,12 +19,9 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            signingConfig = signingConfigs.getByName("debug") // Debug signing
+            isMinifyEnabled = false       // Disable code shrinking
+            isShrinkResources = false     // Disable resource shrinking
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 
@@ -40,8 +37,4 @@ android {
 
 flutter {
     source = "../.."
-}
-
-dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
 }
