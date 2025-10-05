@@ -9,8 +9,8 @@ plugins {
 }
 
 android {
-    namespace = "com.example.emaamulapp"
-    compileSdk = flutter.compileSdkVersion
+    namespace "com.emaamul.app"  // ← ku dar namespace-ka app-kaaga
+    compileSdkVersion 34
     ndkVersion = "25.2.9519653"
 
     compileOptions {
